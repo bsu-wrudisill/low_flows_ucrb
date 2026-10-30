@@ -1,0 +1,198 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AGUtmpl.tex: this template file is for articles formatted with LaTeX2e,
+% Modified December 2018
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% IMPORTANT NOTE:
+%
+% SUPPORTING INFORMATION DOCUMENTATION IS NOT COPYEDITED BEFORE PUBLICATION.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[draft,grl]{agutexSI2019}
+
+ \usepackage{graphicx}
+ \setkeys{Gin}{draft=false}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  ENTER PREAMBLE
+%
+%% ------------------------------------------------------------------------ %%
+
+% \authorrunninghead{=SHORT AUTHOR LIST=}
+% \titlerunninghead{RUNOFF RATIO AND WY2026 IN THE UPPER COLORADO RIVER}
+% \authoraddr{Corresponding author: =Name=, =Affiliation=. (=email=)}
+
+\begin{document}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TITLE
+%
+%% ------------------------------------------------------------------------ %%
+
+\title{Supporting Information for "Record-Low Runoff Efficiency in the Upper Colorado River Basin in Water Year 2026 Is Consistent With a Known Hot-Drought Sensitivity"}
+
+%DOI: 10.1002/%insert paper number here%
+
+%% ------------------------------------------------------------------------ %%
+%
+%  AUTHORS AND AFFILIATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+\authors{=Authors=}
+
+\affiliation{1}{=Affiliation Address=}
+%(repeat as many times as is necessary)
+
+%% ------------------------------------------------------------------------ %%
+%
+%  BEGIN ARTICLE
+%
+%% ------------------------------------------------------------------------ %%
+
+\begin{article}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TEXT
+%
+%% ------------------------------------------------------------------------ %%
+
+\noindent\textbf{Contents of this file}
+\begin{enumerate}
+\item Text S1 to S2
+\item Table S1
+\end{enumerate}
+\noindent\textbf{Additional Supporting Information (Files uploaded separately)}
+\begin{enumerate}
+\item Captions for Data Sets S1 to S2
+\end{enumerate}
+
+\noindent\textbf{Introduction}
+
+This supporting information documents, in full reproducible detail, the two data products built for this study and not otherwise available from a single authoritative source at the time of writing: (1) a monthly naturalized (``natural'') flow record for the Colorado River at Lees Ferry, Arizona extending from water year (WY) 1906 through WY2026, and (2) an Upper Colorado River Basin (UCRB)-averaged monthly precipitation and temperature record spanning 1895/1981 through September 2026, both built to be consistent with the U.S. Bureau of Reclamation's own accounting conventions and the PRISM Climate Group's gridded climate products. Text S1 describes the streamflow reconstruction; Text S2 describes the PRISM precipitation and temperature extraction. Both are needed because Reclamation's own published naturalized-flow record and PRISM's long-term-consistency climate product both currently lag real time by roughly one to two years, while the scientific question motivating this paper -- how anomalous WY2026 was -- requires data through water year's end (30 September 2026). Known imperfections and provisional elements of each product are flagged explicitly in the relevant subsection below and are also carried as a per-water-year data-quality flag in the archived data sets (Data Sets S1--S2).
+
+%\clearpage
+
+\noindent\textbf{Text S1. Reconstruction of naturalized flow at Lees Ferry, WY1906--WY2026}
+
+\noindent\textit{S1.1 Reclamation's naturalized-flow accounting}
+
+The Colorado River Compact and subsequent operating agreements allocate water on the basis of ``natural flow'' -- the streamflow that would occur at a location in the absence of upstream reservoir regulation and consumptive use -- rather than the regulated flow actually measured at a stream gage. The U.S. Bureau of Reclamation computes natural flow at 29 index nodes spanning the Upper and Lower Colorado River basins by a monthly mass-balance identity \cite{prairie2005}:
+\begin{equation}
+Q_{\mathrm{nat}} = Q_{\mathrm{gaged}} + \mathrm{CU\&L} \pm \Delta S_{\mathrm{reservoirs}},
+\end{equation}
+where $Q_{\mathrm{gaged}}$ is the historic measured streamflow, $\mathrm{CU\&L}$ is upstream consumptive uses and losses (irrigation and municipal/industrial depletions net of return flows), and $\Delta S_{\mathrm{reservoirs}}$ is the combined change in contents, evaporation, and bank storage of every upstream reservoir (12 mainstem reservoirs -- Fontenelle, Flaming Gorge, Taylor Park, Blue Mesa, Morrow Point, Crystal, Navajo, Powell, Mead, Mohave, and Havasu -- plus 25 off-stream reservoirs), so that reservoir filling or drawdown is not mistaken for a natural hydrologic signal. Lees Ferry is Reclamation's node 20 (USGS gage 09380000, Colorado River at Lees Ferry, AZ), the last Upper Basin index point and the U.S. Geological Survey Hydrologic Unit Region ``14'' (Upper Colorado Region) outlet, located approximately 25 km below Glen Canyon Dam with essentially no intervening drainage other than the Paria River (USGS 09382000). For the earliest part of the record (1906 through the 1960s--70s at many stations), gage records did not yet exist and were instead reconstructed by multiple linear regression against correlated, contemporaneously gaged stations \cite{usbr2006recordext}; even Reclamation's own ``official'' early-period record is therefore itself a statistically reconstructed product, which motivated the analogous approach taken here for the most recent, not-yet-published years.
+
+\noindent\textit{S1.2 Official data sources and the reporting gap}
+
+Two official Reclamation products were used as ground truth. The first is the historical monthly natural flow file for all 29 nodes, October 1905 through December 2020 \cite{usbr_naturalflow2022}, downloaded from \url{https://www.usbr.gov/lc/region/g4000/NaturalFlow/NaturalFlows1906-2020_20221215.xlsx} (data updated 15 December 2022). The second is Reclamation's provisional annual (calendar- and water-year) Lees Ferry natural flow file \cite{usbr_naturalflowprov2024}, downloaded from \url{https://www.usbr.gov/lc/region/g4000/NaturalFlow/LFnatFlow1906-2024.2024.9.12.xlsx} (August 2024 24-Month Study vintage, updated 12 September 2024), which extends annual (but not monthly) totals through WY2024. As of this writing, Reclamation has therefore not published: (a) any monthly natural flow after December 2020, or (b) any annual total after WY2024. The reconstruction below fills both gaps, through September 2026.
+
+\noindent\textit{S1.3 Near-real-time proxy data (RISE)}
+
+Reclamation's Reclamation Information Sharing Environment (RISE) platform \cite{usbr_rise2026} (\url{https://data.usbr.gov}, programmatic access via \url{https://data.usbr.gov/rise/api}) publishes daily, near-real-time operational time series for Lake Powell/Glen Canyon Dam that are not subject to the multi-year lag of the official natural-flow product. Because Lees Ferry sits immediately downstream of Lake Powell, the reservoir's own daily \emph{unregulated inflow} -- Reclamation's operational estimate of the natural inflow to Powell absent upstream regulation, itself distinct from ``natural flow'' in that it does not add back upstream consumptive depletions -- is an informative predictor of Lees Ferry natural flow. The following RISE catalog items were retrieved in full (period of record beginning 29 June 1963) and aggregated to monthly sums or means as appropriate:
+
+\begin{table}
+\settablenum{S1}
+\caption{RISE (Lake Powell / Glen Canyon Dam) time series used as model features}
+\centering
+\begin{tabular}{l l l}
+\hline
+RISE item ID & Series & Catalog URL (\url{https://data.usbr.gov/catalog/2362/item/}) \\
+\hline
+4301 & Unregulated inflow (af, daily) & .../item/4301 \\
+4288 & Regulated inflow (af, daily)   & .../item/4288 \\
+509  & Storage (af, daily)            & .../item/509  \\
+4404 & Delta (change in) storage (af) & .../item/4404 \\
+508  & Elevation (ft, daily)          & .../item/508  \\
+510  & Evaporation (af, daily)        & .../item/510  \\
+4276 & Bank storage (af, daily)       & .../item/4276 \\
+4354 & Total release (af, daily)      & .../item/4354 \\
+\hline
+\end{tabular}
+\tablenotetext{a}{Retrieved via the RISE REST API (JSON:API format, \texttt{Accept: application/vnd.api+json}), paginated at 5000 records/page.}
+\end{table}
+
+In addition, USGS daily-values streamflow for gage 09380000 (Lees Ferry, the regulated/measured flow used directly in the Reclamation mass-balance identity) and gage 09382000 (Paria River at Lees Ferry, the dominant local accretion between Lake Powell and the Lees Ferry gage) were retrieved from the National Water Information System (NWIS) web service \cite{usgs_nwis} (\url{https://waterservices.usgs.gov/nwis/dv/}).
+
+\noindent\textit{S1.4 Statistical gap-filling model}
+
+A gradient-boosted regression tree model (XGBoost; \citeA{chen2016xgboost}) was trained to predict official monthly natural flow at Lees Ferry from the RISE and USGS features above, plus a month-of-year indicator, over the 1963--2020 period of overlap between the RISE record and the official Reclamation record (691 monthly observations). This reframes the reconstruction problem: rather than rebuilding natural flow from raw gage records, the model only needs to learn the residual between Reclamation's own already-near-natural unregulated-inflow estimate and its final, consumptive-use-adjusted natural flow -- a substantially smaller, more tractable correction (predominantly the seasonal cycle of upstream consumptive use, on the order of 3--4 million acre-feet per year in the Upper Basin) than the full streamflow reconstruction problem.
+
+Model configuration: 400 estimators, maximum depth 4, learning rate 0.03, subsample and column-subsample fractions of 0.8 (\texttt{xgboost.XGBRegressor}, default squared-error objective). Skill was assessed by a chronological (not random) holdout: the model was trained on WY1963--2010 and evaluated on the withheld WY2011--2020 period, then a final production model was re-fit on the full 1963--2020 overlap for operational prediction. Holdout performance, compared against a naive physical baseline (unregulated inflow plus Paria River gaged flow, i.e., the mass-balance identity with the consumptive-use term omitted):
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+ & $R^2$ & \% bias \\
+\hline
+Naive baseline (unregulated inflow + Paria gage) & 0.841 & $-30.2\%$ \\
+XGBoost model & \textbf{0.991} & \textbf{$-0.2\%$} \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textit{S1.5 Reconciliation to known annual totals and treatment of the most recent years}
+
+Where Reclamation has already published a provisional \emph{annual} total (WY2021--WY2024; Section S1.2), the model's monthly predictions for that water year are rescaled by a single multiplicative factor so that the twelve reconstructed months sum exactly to Reclamation's published annual value -- a constrained disaggregation that uses real, if coarser-resolution, ground truth wherever it exists rather than discarding it. Water years 2025 and 2026 have no published annual total as of this writing and are therefore retained as unconstrained model output. Every month in the combined record is tagged with one of four provenance levels, carried through to the archived data set (Data Set S1): \texttt{official\_or\_provisional\_partial} (Reclamation's own published record, through December 2020), \texttt{model\_reconciled\_to\_provisional\_annual} / \texttt{model\_reconciled\_partial\_wy} (reconstructed but constrained to a published annual total, WY2021--2024), and \texttt{model\_pure\_estimate\_no\_annual\_control} (unconstrained model output, WY2025--2026). Users of this record for purposes other than reproducing the analysis in the main text should treat the last category as provisional and subject to revision once Reclamation publishes official figures.
+
+\noindent\textbf{Text S2. UCRB-averaged PRISM precipitation and temperature, 1895/1981--September 2026}
+
+\noindent\textit{S2.1 PRISM data products}
+
+Gridded precipitation and mean temperature were obtained from the PRISM Climate Group, Oregon State University \cite{prism2026,daly2008} (\url{https://prism.oregonstate.edu}), via the group's public FTP-over-HTTPS distribution (\url{https://ftp.prism.oregonstate.edu}). Two PRISM products were used, chosen for different reasons and clearly distinguished throughout the archived data (Data Set S2):
+\begin{enumerate}
+\item \textbf{LT81m} (``long-term,'' 800 m, monthly): built from a station network held as consistent as possible over time, to minimize spurious trends from a growing/shrinking station network -- the appropriate choice for a multi-decade trend and anomaly analysis such as this one. As of this writing LT81m extends from January 1895 through November 2025 for both precipitation (\texttt{ppt}) and mean temperature (\texttt{tmean}); more recent months are not yet released, since the long-term-consistency reprocessing is deliberately not a real-time product.
+\item \textbf{AN81D} (``all networks,'' 800 m, daily): PRISM's near-real-time product, incorporating all available stations without the long-term-consistency constraint, extending to within one day of present. This was used solely to bridge the interval that LT81m does not yet cover (December 2025 -- September 2026), never to replace LT81m values for months where the long-term-consistency product is already available.
+\end{enumerate}
+Both products are distributed as cloud-optimized GeoTIFFs (COGs) inside per-month (LT81m) or per-day (AN81D) zip archives, file-naming convention \texttt{prism\_<ppt|tmean>\_us\_30s\_<YYYYMM[DD]>.zip}, under \url{https://ftp.prism.oregonstate.edu/time_series/us/<lt|an>/800m/<ppt|tmean>/<monthly|daily>/<year>/}.
+
+\noindent\textit{S2.2 Basin boundary}
+
+The averaging domain is the U.S. Geological Survey Watershed Boundary Dataset (WBD) 2-digit hydrologic unit ``14,'' the Upper Colorado Region \cite{usgs_wbd} -- the drainage area is defined, by construction of that hydrologic unit, to be essentially identical to the drainage above Lees Ferry. The polygon (293{,}568.6 km$^2$ when reprojected to the CONUS Albers Equal-Area projection, EPSG:5070) was retrieved as GeoJSON from the WBD ArcGIS REST feature service (\url{https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/1/query?where=huc2=\%2714\%27}) rather than the much larger full-resolution national WBD file geodatabase, since only the single HUC2-level boundary was needed.
+
+\noindent\textit{S2.3 Remote zonal extraction}
+
+Because each monthly (LT81m) or daily (AN81D) PRISM grid covers the full conterminous United States at 30 arc-second (\textasciitilde800 m) resolution (\textasciitilde55--60 MB compressed per file), and the analysis requires only the small fraction of each grid overlapping the UCRB, full files were never downloaded in bulk. Instead, each grid was opened directly from PRISM's server using GDAL's chained \texttt{/vsizip/vsicurl/} virtual file system \cite{gdal2026} (via the \texttt{rasterio} Python bindings), which uses HTTP range requests to fetch only the compressed tiles overlapping a specified window -- reading a UCRB-sized window from a remote 57 MB national grid completed in 1--4 seconds and transferred only the bytes needed, rather than the full file. For each month (LT81m) or day (AN81D), the window was masked to the exact basin polygon (\texttt{rasterio.features.geometry\_mask}), and the basin-average value was computed as a cosine-of-latitude-weighted mean of unmasked pixels, to correct for the modest ($\sim$10\%) east--west grid-cell-width variation with latitude across the basin's 35.6--43.5$^\circ$N extent:
+\begin{equation}
+\bar{X} = \frac{\sum_i x_i \cos(\phi_i)}{\sum_i \cos(\phi_i)},
+\end{equation}
+where $x_i$ is the grid value and $\phi_i$ the latitude at pixel $i$. For precipitation only, a basin-total volume (acre-feet) was additionally computed by multiplying each pixel's depth by its approximate area ($\Delta x \cdot 111{,}320\cos\phi \times \Delta y \cdot 110{,}540$ m$^2$) and summing, then converting m$^3$ to acre-feet (1 acre-foot = 1233.4818375 m$^3$). Monthly values were aggregated from daily AN81D values by summation (precipitation, an accumulating quantity) or unweighted averaging of daily means (temperature); this matches the convention already used for LT81m's own monthly-mean temperature values. Extraction was run at modest concurrency (3 simultaneous connections) with exponential-backoff retries, as PRISM's server was observed to throttle sustained bursts of more than about 8 concurrent connections; all requests eventually succeeded on retry, and the resulting monthly/daily series contain no data gaps over their respective periods of record (LT81m: January 1895 -- November 2025; AN81D: January 1981 -- 29 September 2026, for both variables).
+
+\noindent\textit{S2.4 Extending the record through WY2026}
+
+Water year 2026 (October 2025 -- September 2026) is only 2/12 covered by LT81m (October and November 2025); the remaining ten months (December 2025 -- September 2026) were filled from AN81D, summed (precipitation) or averaged (temperature) to monthly values by the identical procedure as LT81m, then combined with the two LT81m months to complete the water year. As of this writing, September 2026 is not yet complete (data available through 29 September); the available 27--29 days were used as a representative estimate of the full month rather than withholding the water year entirely, a choice flagged explicitly in Data Set S2 and in every figure derived from it in the main text.
+
+%%Enter Data Set captions here
+
+\noindent\textbf{Data Set S1.} Monthly naturalized flow at Lees Ferry, Arizona (Colorado River), October 1905 -- September 2026 (acre-feet), with a per-month source/provenance flag as described in Text S1.5. Columns: \texttt{yyyymm}, \texttt{water\_year}, \texttt{natflow\_af}, \texttt{source}.
+
+\noindent\textbf{Data Set S2.} Upper Colorado River Basin area-weighted monthly precipitation (mm and acre-feet) and mean temperature (\textdegree C), January 1895 -- September 2026, with a per-record product flag (LT81m vs.\ AN81D-extended) as described in Text S2.4. Columns: \texttt{yyyymm}, \texttt{precip\_mm}, \texttt{precip\_af}, \texttt{tair\_degC}, \texttt{source}.
+
+
+%%% End of body of article:
+
+%% ------------------------------------------------------------------------ %%
+%%  REFERENCE LIST AND TEXT CITATIONS
+
+\bibliography{references}
+
+%Reference citation instructions and examples:
+%
+% Please use ONLY \cite and \citeA for reference citations.
+% \cite for parenthetical references; \citeA for in-text citations.
+% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
+
+%% ------------------------------------------------------------------------ %%
+%
+%  END ARTICLE
+%
+%% ------------------------------------------------------------------------ %%
+\end{article}
+\clearpage
+
+\end{document}
